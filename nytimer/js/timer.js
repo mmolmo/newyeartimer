@@ -39,7 +39,7 @@ function updateCountdowntime(){
   //console.log(currentTime);
 
   //get 5 minutes in millseconds
-const fivemin = 2300000;
+const fivemin = 300000;
 const onemin = 60000;
 
 if (diff <= fivemin){
@@ -53,8 +53,19 @@ if (diff <= fivemin){
   minutes.style.filter = "drop-shadow(0px 0px 3px white";
   seconds.style.webkitTextStrokeColor = "rgb(252, 242, 214)";
   seconds.style.filter = "drop-shadow(0px 0px 3px white";
-  console.log("It will be five minutes until " + newYearTime);
-} else if (diff >= fivemin){
+  console.log("It is less than five minutes until " + newYearTime);
+} else if (diff <= onemin && diff <= fivemin){
+  countDown.style.backdropFilter= "blur(2px)";
+  days.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
+  days.style.filter = "drop-shadow(0px 0px 3px white";
+  hours.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
+  hours.style.filter = "drop-shadow(0px 0px 3px white";
+  minutes.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
+  minutes.style.filter = "drop-shadow(0px 0px 3px white";
+  seconds.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
+  seconds.style.filter = "drop-shadow(0px 0px 3px white";
+  console.log("It is less than 1 minute until " + newYearTime);
+} else {
   fiveminflag = false;
   days.style.webkitTextStrokeColor = "aliceblue";
   days.style.filter = "none";
@@ -65,19 +76,6 @@ if (diff <= fivemin){
   seconds.style.webkitTextStrokeColor = "aliceblue";
   seconds.style.filter = "none";
   console.log("It is not yet five minutes until " + newYearTime);
-}
-
-if (diff <= onemin){
-  countDown.style.backdropFilter= "blur(2px)";
-  days.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
-  days.style.filter = "drop-shadow(0px 0px 3px white";
-  hours.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
-  hours.style.filter = "drop-shadow(0px 0px 3px white";
-  minutes.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
-  minutes.style.filter = "drop-shadow(0px 0px 3px white";
-  seconds.style.webkitTextStrokeColor = "rgb(247, 190, 182)";
-  seconds.style.filter = "drop-shadow(0px 0px 3px white";
-  console.log("It will be 1 minute until " + newYearTime);
 }
 }
 setInterval(updateCountdowntime, 1000);
@@ -117,7 +115,6 @@ countDown.addEventListener("mouseout", ()=>{
 
 window.addEventListener("load", playAudio, false);
 
-window.addEventListener("keydown", playAudio, false);
 function playAudio(){
   var bgm = new Audio("audio/reflected-light-147979.mp3");
   bgm.loop = false;
